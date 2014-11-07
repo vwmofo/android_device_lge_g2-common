@@ -114,6 +114,8 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 
 BOARD_HARDWARE_CLASS := device/lge/g2-common/cmhw/
 
+TARGET_USES_LOGD := false
+
 BOARD_SEPOLICY_DIRS += \
         device/lge/g2-common/sepolicy
 
