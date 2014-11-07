@@ -118,10 +118,37 @@ BOARD_SEPOLICY_DIRS += \
         device/lge/g2-common/sepolicy
 
 # The list below is order dependent
-BOARD_SEPOLICY_UNION := \
-       device.te \
+BOARD_SEPOLICY_UNION += \
        app.te \
-       file_contexts
+       bluetooth_loader.te \
+       bridge.te \
+       camera.te \
+       device.te \
+       domain.te \
+       file.te \
+       hostapd.te \
+       irsc_util.te \
+       mediaserver.te \
+       mpdecision.te \
+       netmgrd.te \
+       platform_app.te \
+       qmux.te \
+       radio.te \
+       rild.te \
+       rmt.te \
+       sensors.te \
+       ssr.te \
+       surfaceflinger.te \
+       system_server.te \
+       tee.te \
+       thermald.te \
+       time.te \
+       ueventd.te \
+       vss.te \
+       wpa.te \
+       file_contexts \
+       genfs_contexts \
+       te_macros
 
 BOARD_NFC_HAL_SUFFIX := g2
 
