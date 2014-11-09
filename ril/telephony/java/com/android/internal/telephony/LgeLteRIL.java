@@ -67,7 +67,7 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
 
     public LgeLteRIL(Context context, int networkMode, int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription);
-        mSetPreferredNetworkType = -1;
+        //mSetPreferredNetworkType = -1;
         mQANElements = 5;
     }
 
@@ -204,10 +204,10 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
         if (mPhoneType == RILConstants.CDMA_PHONE &&
              status.mCdmaSubscriptionAppIndex >= 0) {
             appIndex = status.mCdmaSubscriptionAppIndex;
-            Log.d(LOG_TAG, "This is a CDMA PHONE " + appIndex);
+            //Log.d(LOG_TAG, "This is a CDMA PHONE " + appIndex);
         } else {
             appIndex = status.mGsmUmtsSubscriptionAppIndex;
-            Log.d(LOG_TAG, "This is a GSM PHONE " + appIndex);
+            //Log.d(LOG_TAG, "This is a GSM PHONE " + appIndex);
         }
 
         if (cardState == 0) { // CardState.CARDSTATE_ABSENT
@@ -219,11 +219,11 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
             mAid = application.aid;
             mUSIM = application.app_type
                       == IccCardApplicationStatus.AppType.APPTYPE_USIM;
-            mSetPreferredNetworkType = mPreferredNetworkType;
+            //mSetPreferredNetworkType = mPreferredNetworkType;
 
             if (TextUtils.isEmpty(mAid))
                mAid = "";
-            Log.d(LOG_TAG, "mAid " + mAid);
+            //Log.d(LOG_TAG, "mAid " + mAid);
         }
 
         return status;
@@ -302,10 +302,10 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
         send(rr);
     }
 
-    @Override
+    //@Override
     public void setCurrentPreferredNetworkType() {
-        if (RILJ_LOGD) riljLog("setCurrentPreferredNetworkType: " + mSetPreferredNetworkType);
-        setPreferredNetworkType(mSetPreferredNetworkType, null);
+        //if (RILJ_LOGD) riljLog("setCurrentPreferredNetworkType: " + mSetPreferredNetworkType);
+        //setPreferredNetworkType(mSetPreferredNetworkType, null);
     }
 
     @Override
@@ -313,11 +313,11 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
         /**
           * If not using a USIM, ignore LTE mode and go to 3G
           */
-        if (!mUSIM && networkType == RILConstants.NETWORK_MODE_LTE_GSM_WCDMA &&
+        /** if (!mUSIM && networkType == RILConstants.NETWORK_MODE_LTE_GSM_WCDMA &&
                  mSetPreferredNetworkType >= RILConstants.NETWORK_MODE_WCDMA_PREF) {
             networkType = RILConstants.NETWORK_MODE_WCDMA_PREF;
-        }
-        mSetPreferredNetworkType = networkType;
+        } **/
+        //mSetPreferredNetworkType = networkType;
 
         super.setPreferredNetworkType(networkType, response);
     }
@@ -467,13 +467,13 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
             switch (paramMessage.what) {
                 case EVENT_RADIO_ON:
                     mRadioOn = true;
-                    Log.d(LOG_TAG, "Radio on -> Forcing sim status update");
+                    //Log.d(LOG_TAG, "Radio on -> Forcing sim status update");
                     sendMessage(obtainMessage(EVENT_ICC_STATUS_CHANGED));
                     break;
                 case EVENT_GET_ICC_STATUS_DONE:
                     AsyncResult asyncResult = (AsyncResult) paramMessage.obj;
                     if (asyncResult.exception != null) {
-                        Log.e (LOG_TAG, "IccCardStatusDone shouldn't return exceptions!", asyncResult.exception);
+                        //Log.e (LOG_TAG, "IccCardStatusDone shouldn't return exceptions!", asyncResult.exception);
                         break;
                     }
                     IccCardStatus status = (IccCardStatus) asyncResult.result;
@@ -488,10 +488,10 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
                         if (mPhoneType == RILConstants.CDMA_PHONE &&
                                status.mCdmaSubscriptionAppIndex >= 0) {
                             appIndex = status.mCdmaSubscriptionAppIndex;
-                            Log.d(LOG_TAG, "This is a CDMA PHONE " + appIndex);
+                            //Log.d(LOG_TAG, "This is a CDMA PHONE " + appIndex);
                         } else {
                             appIndex = status.mGsmUmtsSubscriptionAppIndex;
-                            Log.d(LOG_TAG, "This is a GSM PHONE " + appIndex);
+                            //Log.d(LOG_TAG, "This is a GSM PHONE " + appIndex);
                         }
 
                         IccCardApplicationStatus application = status.mApplications[appIndex];
@@ -508,7 +508,7 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
                                         mRil.setRadioState(CommandsInterface.RadioState.RADIO_ON);
                                         break;
                                     default:
-                                        Log.e(LOG_TAG, "Currently we don't handle SIMs of type: " + app_type);
+                                        //Log.e(LOG_TAG, "Currently we don't handle SIMs of type: " + app_type);
                                         return;
                                 }
                                 break;
@@ -520,7 +520,7 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
                                         mRil.setRadioState(CommandsInterface.RadioState.RADIO_ON);
                                         break;
                                     default:
-                                        Log.e(LOG_TAG, "Currently we don't handle SIMs of type: " + app_type);
+                                        //Log.e(LOG_TAG, "Currently we don't handle SIMs of type: " + app_type);
                                         return;
                                 }
                                 break;
@@ -531,17 +531,17 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
                     break;
                 case EVENT_ICC_STATUS_CHANGED:
                     if (mRadioOn) {
-                        Log.d(LOG_TAG, "Received EVENT_ICC_STATUS_CHANGED, calling getIccCardStatus");
+                        //Log.d(LOG_TAG, "Received EVENT_ICC_STATUS_CHANGED, calling getIccCardStatus");
                          mRil.getIccCardStatus(obtainMessage(EVENT_GET_ICC_STATUS_DONE, paramMessage.obj));
                     } else {
-                         Log.d(LOG_TAG, "Received EVENT_ICC_STATUS_CHANGED while radio is not ON. Ignoring");
+                         //Log.d(LOG_TAG, "Received EVENT_ICC_STATUS_CHANGED while radio is not ON. Ignoring");
                     }
                     break;
                 case EVENT_RADIO_OFF_OR_UNAVAILABLE:
                     mRadioOn = false;
                     // disposeCards(); // to be verified;
                 default:
-                    Log.e(LOG_TAG, " Unknown Event " + paramMessage.what);
+                    //Log.e(LOG_TAG, " Unknown Event " + paramMessage.what);
                     break;
             }
         }
