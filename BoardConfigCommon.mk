@@ -89,7 +89,6 @@ TARGET_USES_LOGD := false
 BOARD_SEPOLICY_DIRS += \
         device/lge/g2-common/sepolicy
 BOARD_SEPOLICY_UNION := \
-       device.te \
        app.te \
        file_contexts
 
