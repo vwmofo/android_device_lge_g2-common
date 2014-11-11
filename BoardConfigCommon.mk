@@ -82,6 +82,9 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 TARGET_NO_RPC := true
 TARGET_PROVIDES_GPS_LOC_API := true
 
+# Logging
+TARGET_USES_LOGD := false
+
 # SELinux
 BOARD_SEPOLICY_DIRS += \
         device/lge/g2-common/sepolicy
