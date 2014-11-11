@@ -88,6 +88,7 @@ TARGET_USES_LOGD := false
 # SELinux
 BOARD_SEPOLICY_DIRS += \
         device/lge/g2-common/sepolicy
+
 BOARD_SEPOLICY_UNION := \
        app.te \
        file_contexts
@@ -114,9 +115,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
 # Qcom
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_QCOM_AUDIO_VARIANT := caf
-TARGET_QCOM_DISPLAY_VARIANT := caf-new
-TARGET_QCOM_MEDIA_VARIANT := caf-new
 TARGET_USES_QCOM_BSP := true
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
