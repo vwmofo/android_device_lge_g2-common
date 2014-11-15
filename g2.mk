@@ -66,7 +66,9 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
 	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 	frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
-	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
+	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
 
 # GPS configuration
@@ -137,7 +139,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.call_ring.multiple=0
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.telephony.ril_class=LgeLteRIL \
+	persist.radio.apm_sim_not_pwdn=1 \
+    ro.telephony.call_ring.multiple=0 \
+    persist.radio.mode_pref_nv10=1 \
+       ro.telephony.ril_class=LgeLteRIL \
 	ro.telephony.ril.config=qcomdsds
 
 #Upto 3 layers can go through overlays
