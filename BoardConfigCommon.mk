@@ -122,16 +122,13 @@ BOARD_SEPOLICY_UNION += \
         bridge.te \
         camera.te \
         device.te \
-        domain.te \
         file.te \
         hostapd.te \
-        irsc_util.te \
         mediaserver.te \
         mpdecision.te \
         netmgrd.te \
         platform_app.te \
         qmux.te \
-        radio.te \
         rild.te \
         rmt.te \
         sensors.te \
