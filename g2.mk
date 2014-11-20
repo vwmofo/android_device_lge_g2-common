@@ -72,7 +72,7 @@ PRODUCT_COPY_FILES += \
 
 # GPS configuration
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps.conf:system/etc/gps.conf
+    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf
 
 # IRSC
 PRODUCT_COPY_FILES += \
@@ -188,7 +188,7 @@ PRODUCT_PACKAGES += \
 	libloc_eng \
 	libloc_api_v02 \
 	libgps.utils \
-	gps.g2
+	gps.msm8974
 
 PRODUCT_PACKAGES += \
 	hwaddrs
