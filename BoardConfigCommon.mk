@@ -137,7 +137,6 @@ BOARD_SEPOLICY_UNION += \
         system_server.te \
         tee.te \
         thermald.te \
-        time.te \
         ueventd.te \
         vss.te \
         wpa.te \
